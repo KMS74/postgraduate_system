@@ -5,7 +5,7 @@
         <div class="mb-3">
           <label class="form-label"> اسم الطالب</label>
           <input
-            v-model="personalDataForm.studentName"
+            v-model.lazy="studentName"
             style="direction: rtl"
             type="text"
             class="form-control"
@@ -16,7 +16,7 @@
         <div class="mb-3">
           <label class="form-label">الرقم القومي</label>
           <input
-            v-model="personalDataForm.nationalID"
+            v-model.lazy="nationalID"
             type="text"
             style="direction: rtl"
             class="form-control"
@@ -29,7 +29,7 @@
         <div class="mb-3">
           <label class="form-label"> محل الميلاد</label>
           <input
-            v-model="personalDataForm.addressOfBirth"
+            v-model.lazy="addressOfBirth"
             style="direction: rtl"
             placeholder="قرية/مركز/محافظة"
             type="text"
@@ -41,7 +41,7 @@
         <div class="mb-3">
           <label class="form-label"> تاريخ الميلاد</label>
           <input
-            v-model="personalDataForm.dataOfBirth"
+            v-model.lazy="dataOfBirth"
             style="direction: rtl"
             type="date"
             class="form-control"
@@ -54,7 +54,7 @@
         <div class="mb-3">
           <label class="form-label"> الجنسية </label>
           <input
-            v-model="personalDataForm.nationality"
+            v-model.lazy="nationality"
             style="direction: rtl"
             type="text"
             class="form-control"
@@ -65,7 +65,7 @@
         <div class="mb-3">
           <label class="form-label"> الديانة</label>
           <input
-            v-model="personalDataForm.religion"
+            v-model.lazy="religion"
             style="direction: rtl"
             type="text"
             class="form-control"
@@ -78,7 +78,7 @@
         <div class="mb-3">
           <label class="form-label"> الموقف من التجنيد </label>
           <input
-            v-model="personalDataForm.militaryStatus"
+            v-model.lazy="militaryStatus"
             style="direction: rtl"
             type="text"
             class="form-control"
@@ -89,7 +89,7 @@
         <div class="mb-3">
           <label class="form-label"> الوظيفة وجهة العمل</label>
           <input
-            v-model="personalDataForm.jop"
+            v-model.lazy="jop"
             style="direction: rtl"
             type="text"
             class="form-control"
@@ -102,7 +102,7 @@
         <div class="mb-3">
           <label class="form-label"> العنوان </label>
           <input
-            v-model="personalDataForm.currentAddress"
+            v-model.lazy="currentAddress"
             style="direction: rtl"
             placeholder="محل الاقامة الحالي"
             type="text"
@@ -114,7 +114,7 @@
         <div class="mb-3">
           <label class="form-label"> رقم التليفون</label>
           <input
-            v-model="personalDataForm.phone"
+            v-model.lazy="phone"
             style="direction: rtl"
             type="text"
             class="form-control"
@@ -126,22 +126,22 @@
 </template>
 
 <script>
+import { mapFields } from "vuex-map-fields";
+
 export default {
-  data() {
-    return {
-      personalDataForm: {
-        studentName: "",
-        nationalID: "",
-        dataOfBirth: "",
-        addressOfBirth: "",
-        currentAddress: "",
-        nationality: "",
-        religion: "",
-        phone: "",
-        jop: "",
-        militaryStatus: "",
-      },
-    };
+  computed: {
+    ...mapFields([
+      "personalDataForm.studentName",
+      "personalDataForm.nationalID",
+      "personalDataForm.dataOfBirth",
+      "personalDataForm.addressOfBirth",
+      "personalDataForm.currentAddress",
+      "personalDataForm.nationality",
+      "personalDataForm.religion",
+      "personalDataForm.phone",
+      "personalDataForm.jop",
+      "personalDataForm.militaryStatus",
+    ]),
   },
 };
 </script>

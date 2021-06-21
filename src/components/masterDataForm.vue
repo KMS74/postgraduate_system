@@ -5,7 +5,7 @@
         <div class="mb-3">
           <label class="form-label"> ماجيستير في</label>
           <input
-            v-model="masterDataForm.masterIn"
+            v-model.lazy="masterIn"
             style="direction: rtl"
             type="text"
             class="form-control"
@@ -16,7 +16,7 @@
         <div class="mb-3">
           <label class="form-label">دور</label>
           <input
-            v-model="masterDataForm.eldor"
+            v-model.lazy="eldor"
             style="direction: rtl"
             type="text"
             class="form-control"
@@ -29,7 +29,7 @@
         <div class="mb-3">
           <label class="form-label">من كلية</label>
           <input
-            v-model="masterDataForm.faculty"
+            v-model.lazy="faculty"
             style="direction: rtl"
             type="text"
             class="form-control"
@@ -40,7 +40,7 @@
         <div class="mb-3">
           <label class="form-label">جامعة</label>
           <input
-            v-model="masterDataForm.universty"
+            v-model.lazy="universty"
             style="direction: rtl"
             type="text"
             class="form-control"
@@ -53,7 +53,7 @@
         <div class="mb-3">
           <label class="form-label">التخصص</label>
           <input
-            v-model="masterDataForm.department"
+            v-model.lazy="department"
             style="direction: rtl"
             type="text"
             class="form-control"
@@ -64,7 +64,7 @@
         <div class="mb-3">
           <label class="form-label">التقدير </label>
           <input
-            v-model="masterDataForm.grade"
+            v-model.lazy="grade"
             style="direction: rtl"
             type="text"
             class="form-control"
@@ -76,18 +76,18 @@
 </template>
 
 <script>
+import { mapFields } from "vuex-map-fields";
+
 export default {
-  data() {
-    return {
-      masterDataForm: {
-        masterIn: "",
-        eldor: "",
-        faculty: "",
-        universty: "",
-        department: "",
-        grade: "",
-      },
-    };
+  computed: {
+    ...mapFields([
+      "masterDataForm.masterIn",
+      "masterDataForm.eldor",
+      "masterDataForm.faculty",
+      "masterDataForm.universty",
+      "masterDataForm.department",
+      "masterDataForm.grade",
+    ]),
   },
 };
 </script>

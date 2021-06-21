@@ -30,6 +30,12 @@ import BachelorDataForm from "../../../components/bachelorDataForm.vue";
 import PersonalDataForm from "../../../components/PersonalDataForm.vue";
 
 export default {
+  data() {
+    return {
+      personalData: {},
+      bachelorData: {},
+    };
+  },
   methods: {
     submit() {
       // implement the method
