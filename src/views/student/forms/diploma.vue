@@ -3,7 +3,7 @@
     <div class="row mulitistep-form">
       <div class="col-lg-12">
         <form-wizard
-          @on-complete="submit"
+          @on-complete="submitDiplomaForm"
           next-button-text="التالي"
           back-button-text=" السابق"
           finish-button-text="تقديم البيانات"
@@ -28,18 +28,42 @@ import { FormWizard, TabContent } from "vue-form-wizard";
 import "vue-form-wizard/dist/vue-form-wizard.min.css";
 import BachelorDataForm from "../../../components/bachelorDataForm.vue";
 import PersonalDataForm from "../../../components/PersonalDataForm.vue";
-
+import firebase from "../../../firebaseConfig";
+const db = firebase.firestore();
 export default {
-  data() {
-    return {
-      personalData: {},
-      bachelorData: {},
-    };
-  },
   methods: {
-    submit() {
-      // implement the method
-      alert("submit method");
+    submitDiplomaForm() {
+      let diplomaData = this.$store.getters.diplomaData;
+      // console.log(diplomaData);
+      db.collection("diploma")
+        .add(diplomaData)
+        .then(() => {
+          alert("تم التقديم طلبك بنجاح");
+          this.$store.dispatch("updatePersonalData", {
+            studentName: "",
+            nationalID: "",
+            dataOfBirth: "",
+            addressOfBirth: "",
+            currentAddress: "",
+            nationality: "",
+            religion: "",
+            phone: "",
+            jop: "",
+            militaryStatus: "",
+          });
+          this.$store.dispatch("updateBachelorData", {
+            bachelorIn: "",
+            bachelorEldor: "",
+            bachelorFaculty: "",
+            bachelorUniversty: "",
+            bachelorDepartment: "",
+            bachelorGrade: "",
+          });
+          this.$router.push({ name: "Home" });
+        })
+        .catch((error) => {
+          console.error("Error writing document: ", error);
+        });
     },
   },
   components: {

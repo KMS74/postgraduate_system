@@ -8,7 +8,7 @@
               <router-link :to="{ name: 'DiplomaStudentsData' }"
                 >المتقدمين لدبلومة الدراسات العليا</router-link
               >
-              <span class="num">20</span>
+              <span class="num">{{ diplomaReceords }}</span>
             </p>
           </div>
         </div>
@@ -18,7 +18,7 @@
               <router-link :to="{ name: 'MasterStudentsData' }"
                 >المتقدمين لدرجة الماجستير</router-link
               >
-              <span class="num">10</span>
+              <span class="num">{{ masterReceords }}</span>
             </p>
           </div>
         </div>
@@ -28,7 +28,7 @@
               <router-link :to="{ name: 'DoctorateStudentsData' }">
                 المتقدمين لدرجة الدكتوراه</router-link
               >
-              <span class="num">15</span>
+              <span class="num">{{ dectorateReceords }}</span>
             </p>
           </div>
         </div>
@@ -38,7 +38,24 @@
 </template>
 
 <script>
-export default {};
+export default {
+  computed: {
+    diplomaReceords() {
+      return this.$store.getters.getDiplomaDataReceords;
+    },
+    masterReceords() {
+      return this.$store.getters.getMasterDataReceords;
+    },
+    dectorateReceords() {
+      return this.$store.getters.getDoctorateDataReceords;
+    },
+  },
+  mounted() {
+    this.$store.dispatch("fetchDoctorateData");
+    this.$store.dispatch("fetchDiplomaData");
+    this.$store.dispatch("fetchMasterData");
+  },
+};
 </script>
 
 <style scoped>

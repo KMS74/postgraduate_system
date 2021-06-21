@@ -1,5 +1,5 @@
 <template>
-  <div class="table-responsive mt-5">
+  <div class="table mt-5">
     <table class="table table-bordered">
       <thead>
         <tr>
@@ -8,7 +8,6 @@
           <th scope="col">المؤهل الدراسي</th>
           <th scope="col">القسم</th>
           <th scope="col">جهة التخرج</th>
-          <th scope="col">سنة التخرج</th>
           <th scope="col">التقدير العام</th>
           <th scope="col">الوظيفة الحالية</th>
           <th scope="col">الموقف من التجنيد</th>
@@ -16,16 +15,22 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+        <tr v-for="(student, index) in studentData" :key="student.nationalID">
+          <th scope="row">{{ index + 1 }}</th>
+          <td>{{ student.studentName }}</td>
+          <td>{{ student.bachelorIn }}</td>
+          <td>{{ student.bachelorDepartment }}</td>
+          <td>
+            {{
+              " كلية " +
+              student.bachelorFaculty +
+              " جامعة " +
+              student.bachelorUniversty
+            }}
+          </td>
+          <td>{{ student.bachelorGrade }}</td>
+          <td>{{ student.jop }}</td>
+          <td>{{ student.militaryStatus }}</td>
           <td>
             <div class="text-center">
               <button class="btn btn-success mx-2">قبول</button>
@@ -40,7 +45,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    studentData: {
+      type: Array,
+    },
+  },
+};
 </script>
 
 <style></style>

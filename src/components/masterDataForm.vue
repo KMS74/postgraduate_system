@@ -16,7 +16,7 @@
         <div class="mb-3">
           <label class="form-label">دور</label>
           <input
-            v-model.lazy="eldor"
+            v-model.lazy="masterEldor"
             style="direction: rtl"
             type="text"
             class="form-control"
@@ -29,7 +29,7 @@
         <div class="mb-3">
           <label class="form-label">من كلية</label>
           <input
-            v-model.lazy="faculty"
+            v-model.lazy="masterFaculty"
             style="direction: rtl"
             type="text"
             class="form-control"
@@ -40,7 +40,7 @@
         <div class="mb-3">
           <label class="form-label">جامعة</label>
           <input
-            v-model.lazy="universty"
+            v-model.lazy="masterUniversty"
             style="direction: rtl"
             type="text"
             class="form-control"
@@ -53,7 +53,7 @@
         <div class="mb-3">
           <label class="form-label">التخصص</label>
           <input
-            v-model.lazy="department"
+            v-model.lazy="masterDepartment"
             style="direction: rtl"
             type="text"
             class="form-control"
@@ -64,7 +64,7 @@
         <div class="mb-3">
           <label class="form-label">التقدير </label>
           <input
-            v-model.lazy="grade"
+            v-model.lazy="masterGrade"
             style="direction: rtl"
             type="text"
             class="form-control"
@@ -82,11 +82,11 @@ export default {
   computed: {
     ...mapFields([
       "masterDataForm.masterIn",
-      "masterDataForm.eldor",
-      "masterDataForm.faculty",
-      "masterDataForm.universty",
-      "masterDataForm.department",
-      "masterDataForm.grade",
+      "masterDataForm.masterEldor",
+      "masterDataForm.masterFaculty",
+      "masterDataForm.masterUniversty",
+      "masterDataForm.masterDepartment",
+      "masterDataForm.masterGrade",
     ]),
   },
 };

@@ -3,7 +3,7 @@
     <div class="row mulitistep-form">
       <div class="col-lg-12">
         <form-wizard
-          @on-complete="submit"
+          @on-complete="submitMasterForm"
           next-button-text="التالي"
           back-button-text=" السابق"
           finish-button-text="تقديم البيانات"
@@ -34,12 +34,49 @@ import "vue-form-wizard/dist/vue-form-wizard.min.css";
 import BachelorDataForm from "../../../components/bachelorDataForm.vue";
 import DiplomaDataForm from "../../../components/diplomaDataForm.vue";
 import PersonalDataForm from "../../../components/PersonalDataForm.vue";
-
+import firebase from "../../../firebaseConfig";
+const db = firebase.firestore();
 export default {
   methods: {
-    submit() {
-      // implement the method
-      alert("submit method");
+    submitMasterForm() {
+      let masterData = this.$store.getters.masterData;
+      db.collection("master")
+        .add(masterData)
+        .then(() => {
+          alert("تم التقديم طلبك بنجاح");
+          this.$store.dispatch("updatePersonalData", {
+            studentName: "",
+            nationalID: "",
+            dataOfBirth: "",
+            addressOfBirth: "",
+            currentAddress: "",
+            nationality: "",
+            religion: "",
+            phone: "",
+            jop: "",
+            militaryStatus: "",
+          });
+          this.$store.dispatch("updateBachelorData", {
+            bachelorIn: "",
+            bachelorEldor: "",
+            bachelorFaculty: "",
+            bachelorUniversty: "",
+            bachelorDepartment: "",
+            bachelorGrade: "",
+          });
+          this.$store.dispatch("updateDiplomaData", {
+            diplomaIn: "",
+            diplomaEldor: "",
+            diplomaFaculty: "",
+            diplomaUniversty: "",
+            diplomaDepartment: "",
+            diplomaGrade: "",
+          });
+          this.$router.push({ name: "Home" });
+        })
+        .catch((error) => {
+          console.error("Error writing document: ", error);
+        });
     },
   },
   components: {

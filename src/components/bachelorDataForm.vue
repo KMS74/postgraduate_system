@@ -5,7 +5,7 @@
         <div class="mb-3">
           <label class="form-label">كلية</label>
           <input
-            v-model.lazy="faculty"
+            v-model.lazy="bachelorFaculty"
             style="direction: rtl"
             type="text"
             class="form-control"
@@ -16,7 +16,7 @@
         <div class="mb-3">
           <label class="form-label">جامعة</label>
           <input
-            v-model.lazy="universty"
+            v-model.lazy="bachelorUniversty"
             style="direction: rtl"
             type="text"
             class="form-control"
@@ -40,7 +40,7 @@
         <div class="mb-3">
           <label class="form-label">دور</label>
           <input
-            v-model.lazy="eldor"
+            v-model.lazy="bachelorEldor"
             style="direction: rtl"
             type="text"
             class="form-control"
@@ -53,7 +53,7 @@
         <div class="mb-3">
           <label class="form-label">التخصص</label>
           <input
-            v-model.lazy="department"
+            v-model.lazy="bachelorDepartment"
             style="direction: rtl"
             type="text"
             class="form-control"
@@ -64,7 +64,7 @@
         <div class="mb-3">
           <label class="form-label">التقدير العام</label>
           <input
-            v-model.lazy="grade"
+            v-model.lazy="bachelorGrade"
             style="direction: rtl"
             type="text"
             class="form-control"
@@ -82,12 +82,11 @@ export default {
   computed: {
     ...mapFields([
       "bachelorDataForm.bachelorIn",
-      "bachelorDataForm.eldor",
-      "bachelorDataForm.faculty",
-      "bachelorDataForm.universty",
-      "bachelorDataForm.department",
-      "bachelorDataForm.grade",
-
+      "bachelorDataForm.bachelorEldor",
+      "bachelorDataForm.bachelorFaculty",
+      "bachelorDataForm.bachelorUniversty",
+      "bachelorDataForm.bachelorDepartment",
+      "bachelorDataForm.bachelorGrade",
     ]),
   },
 };
